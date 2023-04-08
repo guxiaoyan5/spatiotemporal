@@ -1,10 +1,11 @@
 import os.path
 
 import pandas as pd
-from sklearn.preprocessing import StandardScaler
+# from sklearn.preprocessing import StandardScaler
 from torch.utils.data import Dataset
 
 from utils.time_features import time_features
+from utils.tools import StandardScaler
 
 
 class DatasetAir(Dataset):

@@ -243,6 +243,6 @@ class ExpMain(ExpBasic):
         np.save(folder_path + 'metrics.npy', np.array([mae, mse, rmse, mape, mspe]))
         np.save(folder_path + 'pred.npy', preds)
         np.save(folder_path + 'true.npy', trues)
-        np.save(folder_path + "pred_original.npy", test_data.inverse_transform(preds))
-        np.save(folder_path + "true_original.npy", test_data.inverse_transform(trues))
+        np.save(folder_path + 'pred_o.npy', test_data.inverse_transform(preds))
+        np.save(folder_path + 'true_o.npy', test_data.inverse_transform(trues))
         return

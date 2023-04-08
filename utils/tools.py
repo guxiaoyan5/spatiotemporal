@@ -2,6 +2,33 @@ import numpy as np
 import torch
 
 
+class StandardScaler:
+    """
+    Standard the input
+    """
+
+    def __init__(self):
+        super().__init__()
+        self.mean = 0
+        self.std = 1
+
+    def fit(self, data):
+        self.mean = data.mean()
+        self.std = data.std()
+
+    def transform(self, data):
+        return (data - self.mean) / self.std
+
+    def inverse_transform(self, data):
+        if type(data) == torch.Tensor:
+            std = torch.from_numpy(self.std).to(data.device).type(data.dtype)
+            mean = torch.from_numpy(self.mean).to(data.device).type(data.dtype)
+        else:
+            std = self.std
+            mean = self.mean
+        return (data * std) + mean
+
+
 class EarlyStopping:
     def __init__(self, patience=7, verbose=False, delta=0):
         self.patience = patience

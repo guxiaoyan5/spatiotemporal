@@ -45,7 +45,6 @@ def main():
                         help='whether to use distilling in encoder, using this argument means not using distilling',
                         default=True)
     parser.add_argument('--dropout', type=float, default=0.3, help='dropout')
-    parser.add_argument('--attn', type=str, default='prob', help='attention used in encoder, options:[prob, full]')
     parser.add_argument('--embed', type=str, default='timeF',
                         help='time features encoding, options:[timeF, fixed, learned]')
     parser.add_argument('--activation', type=str, default='gelu', help='activation')
@@ -100,7 +99,7 @@ def main():
             exp.train(setting)
 
             print('>>>>>>>testing : {}<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'.format(setting))
-            exp.test(setting)
+            exp.test(setting,1)
 
             torch.cuda.empty_cache()
     else:
